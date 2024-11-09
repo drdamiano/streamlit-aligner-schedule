@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # Dodanie logo (wklej poniżej ścieżkę do logo z GitHub)
-st.image("https://raw.githubusercontent.com/drdamiano/streamlit-aligner-schedule/main/logo.png", width=200)
+st.image("https://raw.githubusercontent.com/drdamiano/streamlit-aligner-schedule/main/logo.PNG", width=200)
 
 # Dodanie adresu strony internetowej
 st.markdown("### [drnowacki.pl](https://drnowacki.pl)")
