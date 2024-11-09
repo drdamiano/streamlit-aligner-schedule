@@ -34,16 +34,16 @@ st.markdown("""
             display: inline-block;
             padding: 10px 20px;
             margin: 10px 5px;
-            border: 2px solid #D2B48C;
+            border: 2px solid black;
             border-radius: 8px;
-            background-color: #D2B48C;
-            color: black;
+            background-color: black;
+            color: white;
             text-decoration: none;
             font-weight: bold;
             font-size: 16px;
         }
         .link-button:hover {
-            background-color: #C5A77D;
+            background-color: #333333;
         }
     </style>
     <div style="text-align: center;">
