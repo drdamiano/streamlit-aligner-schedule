@@ -58,6 +58,7 @@ st.title("Harmonogram Noszenia Nakładek")
 # Formularz dla pacjenta
 start_date = st.date_input("Wybierz datę rozpoczęcia", datetime.now().date())
 start_aligner = st.number_input("Podaj numer początkowej nakładki", min_value=1, step=1)
+end_aligner = st.number_input("Podaj numer końcowej nakładki", min_value=start_aligner, step=1)
 days_per_aligner = st.number_input("Liczba dni noszenia jednej nakładki", min_value=1, step=1)
 
 # Przycisk do wygenerowania harmonogramu
@@ -67,7 +68,7 @@ if st.button("Generuj harmonogram"):
     current_date = start_date
     current_aligner = start_aligner
 
-    for i in range(20):
+    while current_aligner <= end_aligner:
         schedule.append({
             "Nakładka": current_aligner,
             "Data rozpoczęcia": current_date,
