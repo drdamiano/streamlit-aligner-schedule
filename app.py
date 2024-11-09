@@ -2,6 +2,15 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 
+# Dodanie logo (wklej poniżej ścieżkę do logo z GitHub)
+st.image("https://raw.githubusercontent.com/drdamiano/streamlit-aligner-schedule/main/logo.png", width=200)
+
+# Dodanie adresu strony internetowej
+st.markdown("### [drnowacki.pl](https://drnowacki.pl)")
+
+# Dodanie linku do Instagrama
+st.markdown("[Instagram](https://instagram.com/drnowacki)")
+
 # Nagłówek aplikacji
 st.title("Harmonogram Noszenia Nakładek")
 
@@ -40,3 +49,4 @@ if st.button("Generuj harmonogram"):
         file_name='harmonogram_nakładek.csv',
         mime='text/csv',
     )
+
