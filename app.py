@@ -20,29 +20,36 @@ def generate_image(schedule_df):
     plt.close(fig)
     return buf
 
-# Wyświetlenie logo (zamień URL na prawidłowy adres do pliku logo w repozytorium)
-st.image("https://raw.githubusercontent.com/drdamiano/streamlit-aligner-schedule/main/logo.PNG", width=200)
+# Wyświetlenie logo na środku
+st.markdown("""
+    <div style='text-align: center;'>
+        <img src='https://raw.githubusercontent.com/drdamiano/streamlit-aligner-schedule/main/logo.PNG' width=200>
+    </div>
+    """, unsafe_allow_html=True)
 
-# Stylizowane linki do strony i Instagrama
+# Stylizowane linki do strony i Instagrama z nowymi kolorami
 st.markdown("""
     <style>
         .link-button {
             display: inline-block;
-            padding: 8px 16px;
-            margin: 4px 2px;
-            border: 2px solid #4CAF50;
-            border-radius: 4px;
-            background-color: #4CAF50;
-            color: white;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            background-color: #FFD700;
+            color: black;
             text-decoration: none;
             font-weight: bold;
+            font-size: 16px;
         }
         .link-button:hover {
-            background-color: #45a049;
+            background-color: #FFC107;
         }
     </style>
-    <a href="https://drnowacki.pl" class="link-button" target="_blank">drnowacki.pl</a>
-    <a href="https://instagram.com/drnowacki" class="link-button" target="_blank">Instagram</a>
+    <div style="text-align: center;">
+        <a href="https://drnowacki.pl" class="link-button" target="_blank">drnowacki.pl</a>
+        <a href="https://instagram.com/drnowacki" class="link-button" target="_blank">Instagram</a>
+    </div>
     """, unsafe_allow_html=True)
 
 # Nagłówek aplikacji
@@ -94,3 +101,4 @@ if st.button("Generuj harmonogram"):
         file_name="harmonogram_nakładek.png",
         mime="image/png"
     )
+
