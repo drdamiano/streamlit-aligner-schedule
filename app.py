@@ -1,15 +1,49 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+from io import BytesIO
 
-# Dodanie logo (wklej poniżej ścieżkę do logo z GitHub)
+# Funkcja do generowania zrzutu ekranu harmonogramu
+def generate_image(schedule_df):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.axis('off')
+    ax.axis('tight')
+    
+    # Rysowanie tabeli z harmonogramem na obrazie
+    ax.table(cellText=schedule_df.values, colLabels=schedule_df.columns, cellLoc='center', loc='center')
+    
+    # Zapisywanie tabeli jako obraz w pamięci
+    buf = BytesIO()
+    fig.savefig(buf, format="png", bbox_inches="tight")
+    buf.seek(0)
+    plt.close(fig)
+    return buf
+
+# Wyświetlenie logo (zamień URL na prawidłowy adres do pliku logo w repozytorium)
 st.image("https://raw.githubusercontent.com/drdamiano/streamlit-aligner-schedule/main/logo.PNG", width=200)
 
-# Dodanie adresu strony internetowej
-st.markdown("### [drnowacki.pl](https://drnowacki.pl)")
-
-# Dodanie linku do Instagrama
-st.markdown("[Instagram](https://instagram.com/drnowacki)")
+# Stylizowane linki do strony i Instagrama
+st.markdown("""
+    <style>
+        .link-button {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 4px 2px;
+            border: 2px solid #4CAF50;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <a href="https://drnowacki.pl" class="link-button" target="_blank">drnowacki.pl</a>
+    <a href="https://instagram.com/drnowacki" class="link-button" target="_blank">Instagram</a>
+    """, unsafe_allow_html=True)
 
 # Nagłówek aplikacji
 st.title("Harmonogram Noszenia Nakładek")
@@ -26,7 +60,6 @@ if st.button("Generuj harmonogram"):
     current_date = start_date
     current_aligner = start_aligner
 
-    # Zakładamy, że będzie maksymalnie 20 nakładek (można dostosować)
     for i in range(20):
         schedule.append({
             "Nakładka": current_aligner,
@@ -41,7 +74,7 @@ if st.button("Generuj harmonogram"):
     st.write("### Harmonogram noszenia nakładek")
     st.dataframe(schedule_df)
 
-    # Przycisk do pobrania harmonogramu
+    # Przycisk do pobrania harmonogramu jako CSV
     csv = schedule_df.to_csv(index=False).encode('utf-8')
     st.download_button(
         label="Pobierz harmonogram jako CSV",
@@ -50,3 +83,14 @@ if st.button("Generuj harmonogram"):
         mime='text/csv',
     )
 
+    # Generowanie obrazu tabeli
+    img_buffer = generate_image(schedule_df)
+    st.image(img_buffer, caption="Harmonogram jako obraz")
+
+    # Przycisk do pobrania obrazu
+    st.download_button(
+        label="Pobierz harmonogram jako obraz PNG",
+        data=img_buffer,
+        file_name="harmonogram_nakładek.png",
+        mime="image/png"
+    )
