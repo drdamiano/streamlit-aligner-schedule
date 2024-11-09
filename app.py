@@ -34,16 +34,16 @@ st.markdown("""
             display: inline-block;
             padding: 10px 20px;
             margin: 10px 5px;
-            border: 2px solid #FFD700;
+            border: 2px solid #F5F5DC;
             border-radius: 8px;
-            background-color: #FFD700;
+            background-color: #F5F5DC;
             color: black;
             text-decoration: none;
             font-weight: bold;
             font-size: 16px;
         }
         .link-button:hover {
-            background-color: #FFC107;
+            background-color: #E0D9B5;
         }
     </style>
     <div style="text-align: center;">
@@ -101,4 +101,3 @@ if st.button("Generuj harmonogram"):
         file_name="harmonogram_nakładek.png",
         mime="image/png"
     )
-
